@@ -1,0 +1,10 @@
+syntax = "proto3";
+<% if (pbPackage) { %>package <%= pbPackage %>;<% } %>
+
+<% recordDefs.forEach(function(recordDef){ -%>
+<%- include("message.ejs", {recordDef}); %>
+<% }); -%>
+
+<% enumDefs.forEach(function(enumDef){ -%>
+<%- include("enum.ejs", {enumDef}); %>
+<% }); -%>

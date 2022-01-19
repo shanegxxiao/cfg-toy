@@ -1,0 +1,14 @@
+<%- "//" %> <%= recordDef.aliasName -%><%= recordDefComma(recordDef) %><%= recordDef.annotation %>
+message <%= recordDef.name %> {
+<% for (let i = 0; i < recordDef.fields.length; ++i) { -%>
+<% const field = recordDef.fields[i]; -%>
+<% if (!exportRequired(exportTags, field)) continue; -%>
+<% if (field.isArray) { -%>
+    <%- "//" %> <%= field.aliasName %><%= recordFieldComma(field) %><%= field.annotation %>
+    repeated <%= field.arrayElementType %> <%= field.name %> = <%= i + 1 %>;
+<% } else { -%>
+    <%- "//" %> <%= field.aliasName %><%= recordFieldComma(field) %><%= field.annotation %>
+    <%= field.type %> <%= field.name %> = <%= i + 1 %>;
+<% } -%>
+<% } -%>
+}

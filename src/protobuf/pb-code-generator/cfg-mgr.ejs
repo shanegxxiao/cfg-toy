@@ -1,0 +1,30 @@
+import config from './config.js';
+import protobuf from 'protobufjs/minimal.js';
+import { loadCfgFile } from './config-loader';
+
+export type <%=recordDef.name%>Cfg = config.<%=pbPackage%>.I<%=recordDef.name%>;
+
+class <%=recordDef.name%>CfgMgr{
+    public async load (): Promise<void> {
+        const uint8Array = await loadCfgFile("<%=recordDef.name%>");
+        var reader = protobuf.Reader.create(uint8Array);
+        while (reader.pos < reader.len) {
+            var cfg = config.<%=pbPackage%>.<%=recordDef.name%>.decodeDelimited(reader);
+            <% indexFields.forEach(function(field){ -%>
+            this.<%=field.name%>2<%=recordDef.name%>[cfg.<%=field.name%>] = cfg;
+            <% }); -%>
+        }
+    }
+
+    <% indexFields.forEach(function(field){ -%>
+    public getBy<%=capitalize(field.name)%>(<%=field.name%>: <%=getIndexType(field.type)%>): <%=recordDef.name%>Cfg {
+        return this.<%=field.name%>2<%=recordDef.name%>[<%=field.name%>];
+    }
+    <% }); -%>
+
+    <% indexFields.forEach(function(field){ -%>
+    private <%=field.name%>2<%=recordDef.name%>: {[key: <%=getIndexType(field.type)%>]: <%=recordDef.name%>Cfg } = {};
+    <% }); -%>
+}
+
+export const <%=decapitalize(recordDef.name)%>CfgMgr = new <%=recordDef.name%>CfgMgr();

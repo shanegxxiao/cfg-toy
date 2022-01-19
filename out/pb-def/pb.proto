@@ -1,0 +1,54 @@
+syntax = "proto3";
+package TestPbPkg;
+
+// 物品表, 物品定义
+message Item {
+    // ID, 唯一标识
+    int32 id = 1;
+    // 名字
+    string name = 2;
+    // 图标
+    string icon = 3;
+    // 物品类型
+    ItemType type = 4;
+    // 数量
+    int32 count = 5;
+    // 概率
+    float probability = 6;
+}
+
+// 参数表
+message Args {
+    // 默认主角名
+    string defaultPlayerName = 1;
+    // 默认主角等级
+    int32 defaultPlayerLvl = 2;
+    // 是否使用默认配置
+    bool usrDefaultCfg = 3;
+    // 角色类型
+    PlayerType playerType = 4;
+    // 成长系数
+    float growthFactor = 5;
+    // 默认物品ID列表
+    repeated int32 defaultItems = 6;
+}
+
+
+// 物品类型
+enum ItemType {
+    // 物品类型1
+    Type1 = 1;
+    // 物品类型2
+    Type2 = 2;
+    // 物品类型3
+    Type3 = 3;
+}
+
+// 玩家类型, 玩家类型说明
+enum PlayerType {
+    // 战士, 
+    Warrior = 1;
+    // 法师, 法师注释
+    Master = 2;
+}
+

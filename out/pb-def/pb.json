@@ -1,0 +1,78 @@
+{
+  "nested": {
+    "TestPbPkg": {
+      "nested": {
+        "Item": {
+          "fields": {
+            "id": {
+              "type": "int32",
+              "id": 1
+            },
+            "name": {
+              "type": "string",
+              "id": 2
+            },
+            "icon": {
+              "type": "string",
+              "id": 3
+            },
+            "type": {
+              "type": "ItemType",
+              "id": 4
+            },
+            "count": {
+              "type": "int32",
+              "id": 5
+            },
+            "probability": {
+              "type": "float",
+              "id": 6
+            }
+          }
+        },
+        "Args": {
+          "fields": {
+            "defaultPlayerName": {
+              "type": "string",
+              "id": 1
+            },
+            "defaultPlayerLvl": {
+              "type": "int32",
+              "id": 2
+            },
+            "usrDefaultCfg": {
+              "type": "bool",
+              "id": 3
+            },
+            "playerType": {
+              "type": "PlayerType",
+              "id": 4
+            },
+            "growthFactor": {
+              "type": "float",
+              "id": 5
+            },
+            "defaultItems": {
+              "rule": "repeated",
+              "type": "int32",
+              "id": 6
+            }
+          }
+        },
+        "ItemType": {
+          "values": {
+            "Type1": 1,
+            "Type2": 2,
+            "Type3": 3
+          }
+        },
+        "PlayerType": {
+          "values": {
+            "Warrior": 1,
+            "Master": 2
+          }
+        }
+      }
+    }
+  }
+}

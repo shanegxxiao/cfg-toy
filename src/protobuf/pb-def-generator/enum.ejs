@@ -1,0 +1,8 @@
+<%- "//" %> <%= enumDef.aliasName %><%= enumDefComma(enumDef)%><%= enumDef.annotation %>
+enum <%= enumDef.name %> {
+<% for (let i = 0; i < enumDef.fields.length; ++i) { -%>
+<% const field = enumDef.fields[i]; -%>
+    <%- "//" %> <%= field.aliasName -%><%= enumFieldComma(enumDef)%><%= field.annotation %>
+    <%= field.name %> = <%= field.defaultValue -%>;
+<% } -%>
+}
